@@ -1,0 +1,46 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/*.bak": true,
+        "**/__pycache__": true,
+        "**/.cache": true,
+        "**/.tox": true
+    },
+    "window.reopenFolders": "all",
+    "window.restoreFullscreen": true,
+    "editor.rulers": [
+        120
+    ],
+    "editor.quickSuggestions": true,
+    "editor.wordWrap": "off",
+
+    "python.pythonPath": "python3",
+    "python.linting.pep8Enabled": true,
+    "python.linting.pylintCategorySeverity.convention": "Information",
+    "python.linting.pylintCategorySeverity.refactor": "Information",
+    "python.linting.pydocstyleEnabled": true,
+
+    // whitelist numpy to remove lint errors
+    "python.linting.pylintArgs": [
+        "--extension-pkg-whitelist=numpy",
+        "--ignored-classes=optparse.Values,thread._local,_thread._local,NpzFile"
+    ],
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{column_limit: 120}"
+    ],
+
+    // Arguments passed in. Each argument is a separate item in the array.
+    "python.formatting.autopep8Args": ["--aggressive", "--aggressive"],
+
+    // Format the document upon saving.
+    "python.formatting.formatOnSave": false,
+    "python.unitTest.pyTestArgs": [],
+    "python.unitTest.pyTestEnabled": true
+}
