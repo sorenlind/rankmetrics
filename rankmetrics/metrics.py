@@ -1,10 +1,62 @@
 # -*- coding: utf-8 -*-
 """Metrics."""
-
 import logging
 import numpy as np
 from sklearn.utils.multiclass import type_of_target
 from scipy.sparse import issparse
+
+
+def precision_k_score(y_true, y_pred, k=10):
+    """Calculate precision@k for specified value of k."""
+    return precision_k_curve(y_true, y_pred, max_k=k)[-1]
+
+
+def precision_k_curve(y_true, y_pred, max_k=0):
+    """
+    Calculate precision@k for various values of k.
+
+    y_true indicates the products that the user actually interacted with. it must be a 'multilabel-indicator'.
+
+    If max_k is zero, precision@k is calculated for all values of k from 1 to number of items. Otherwise, it is
+    calculated for all values of k from 1 to max_k.
+    """
+    y_true, y_pred = _check_targets(y_true, y_pred)
+    _, item_count = y_true.shape
+    if not max_k:
+        max_k = item_count
+
+    if max_k < 1 or max_k > item_count:
+        raise ValueError('max_k should be at least 1 and less than or equal to number of labels')
+
+    logging.debug("calculating precision@k for k=1 to k=%s", max_k)
+
+    return _precision_curve(y_true, y_pred, max_k)
+
+
+def _precision_curve(y_true, y_pred, max_k):
+    """Return tuple consisting of precision curve using sample average and micro average respectively."""
+    # Find the top items among the predicted
+    top_pred_indices = np.argsort(y_pred)[:, ::-1][:, :max_k]
+    curve = np.repeat(0.0, max_k)
+
+    user_count, _ = y_true.shape
+    for user_index in range(user_count):
+        y_true_user = y_true[user_index, :]
+        if issparse(y_true_user):
+            y_true_user = y_true_user.todense().A1
+        user_positives = set(np.where(y_true_user > 0.0)[0])
+        hits = np.repeat(0.0, max_k)
+        user_top_pred_indices = top_pred_indices[user_index, :]
+
+        for position, current_pred_index in enumerate(user_top_pred_indices):
+            # found_at_positions = np.where(user_top_pred_indices == current_rated_index)[0]
+            if current_pred_index not in user_positives:
+                continue
+            hits[position] += 1
+        curve += hits
+
+    curve = np.cumsum(curve) / (np.arange(1, max_k + 1, dtype=float) * user_count)
+    return curve
 
 
 def recall_k_score(y_true, y_pred, average='samples', k=10):
@@ -19,7 +71,7 @@ def recall_k_curve(y_true, y_pred, average='samples', max_k=0):
     y_true indicates the products that the user actually interacted with. it must be a 'multilabel-indicator'.
     Parameter average can take values 'samples' or 'micro'.
 
-    If max_k is zero, recall@k is calculated for all values of k from 1 to number of items. Otherwise, the it is
+    If max_k is zero, recall@k is calculated for all values of k from 1 to number of items. Otherwise, it is
     calculated for all values of k from 1 to max_k.
     """
     average_options = ('micro', 'samples')
@@ -232,4 +284,3 @@ def _dcg(relevance, k):
     gains = np.power(2, relevance[:k]) - 1
     discounts = np.log2(np.arange(k) + 2)
     return np.cumsum(gains / discounts)
-
