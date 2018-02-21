@@ -1,5 +1,5 @@
-rankmetrics
-===========
+🎖 Rankmetrics
+==============
 
 Introduction
 ------------
@@ -7,8 +7,8 @@ Introduction
 This package contains functions for calculating various metrics relevant
 for learning to rank systems such as recommender systems.
 
-**IMPORTANT**: This project is still in its very early stages. Results
-should be taken with a grain of salt.
+⚠️  **This project is still in its very early stages. Results
+should be taken with a grain of salt.**
 
 scikit-learn-like APIs
 ----------------------
