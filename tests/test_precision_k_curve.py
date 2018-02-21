@@ -2,8 +2,11 @@
 """Tests for precision@k curve."""
 # pylint: disable=protected-access,too-many-public-methods,no-self-use,too-few-public-methods,C0103
 
+from __future__ import division
+
 import numpy as np
 import pandas as pd
+
 from rankmetrics.metrics import precision_k_curve
 
 

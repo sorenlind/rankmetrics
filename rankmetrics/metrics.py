@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """Metrics."""
+from __future__ import division
+
 import logging
+
 import numpy as np
-from sklearn.utils.multiclass import type_of_target
 from scipy.sparse import issparse
+from sklearn.utils.multiclass import type_of_target
 
 
 def precision_k_score(y_true, y_pred, k=10):

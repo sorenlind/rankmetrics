@@ -2,7 +2,10 @@
 """Tests for recall@k curve."""
 # pylint: disable=protected-access,too-many-public-methods,no-self-use,too-few-public-methods,C0103
 
+from __future__ import division
+
 import numpy as np
+
 from rankmetrics.metrics import bag_recall_k_curve
 
 

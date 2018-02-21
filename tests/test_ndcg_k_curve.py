@@ -2,8 +2,11 @@
 """Tests for NCDG@k curve."""
 # pylint: disable=protected-access,too-many-public-methods,no-self-use,too-few-public-methods,C0103
 
+from __future__ import division
+
 import numpy as np
 import pandas as pd
+
 from rankmetrics.metrics import ndcg_k_curve
 
 

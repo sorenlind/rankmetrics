@@ -2,8 +2,11 @@
 """Tests for bag recall@k score."""
 # pylint: disable=protected-access,too-many-public-methods,no-self-use,too-few-public-methods,C0103
 
+from __future__ import division
+
 import numpy as np
 from scipy.sparse import csr_matrix
+
 from rankmetrics.metrics import bag_recall_k_score
 
 
