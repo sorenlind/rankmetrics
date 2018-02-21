@@ -1,4 +1,5 @@
-.DS_Store
+# General
+*.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -16,6 +17,7 @@ Icon
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -23,14 +25,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# cache files for sublime text
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-
-# workspace files are user-specific
-*.sublime-workspace
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -77,6 +71,8 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *,cover
+.hypothesis/
+.pytest_cache
 
 # Translations
 *.mo
@@ -84,6 +80,7 @@ coverage.xml
 
 # Django stuff:
 *.log
+local_settings.py
 
 # Flask stuff:
 instance/
@@ -98,7 +95,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# Jupyter Notebook
+# IPython Notebook
 .ipynb_checkpoints
 
 # pyenv
@@ -107,16 +104,12 @@ target/
 # celery beat schedule file
 celerybeat-schedule
 
-# dotenv
-.env
-
-# virtualenv
-.venv/
-venv/
-ENV/
 
 # Spyder project settings
 .spyderproject
 
 # Rope project settings
 .ropeproject
+
+# VS Code
+.vscode/*.sql

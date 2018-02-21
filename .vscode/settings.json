@@ -1,7 +1,17 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+    "[markdown]": {
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "on",
+        "editor.renderWhitespace": "all",
+        "editor.acceptSuggestionOnEnter": "off"
+    },
+
+    "debug.inlineValues": true,
+
     "files.exclude": {
         "**/.git": true,
+        "**/.mypy_cache": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/.DS_Store": true,
@@ -9,38 +19,73 @@
         "**/*.bak": true,
         "**/__pycache__": true,
         "**/.cache": true,
-        "**/.tox": true
+        "**/.tox": true,
+        "**/*.egg-info": true,
+        "**/.eggs" : true,
+        "**/.ropeproject": true
     },
-    "window.reopenFolders": "all",
-    "window.restoreFullscreen": true,
     "editor.rulers": [
         120
     ],
     "editor.quickSuggestions": true,
     "editor.wordWrap": "off",
 
-    "python.pythonPath": "python3",
-    "python.linting.pep8Enabled": true,
-    "python.linting.pylintCategorySeverity.convention": "Information",
-    "python.linting.pylintCategorySeverity.refactor": "Information",
-    "python.linting.pydocstyleEnabled": true,
+    "python.autoComplete.addBrackets": true,
+    "python.autoComplete.preloadModules": ["numpy", "scipy", "pandas"],
 
+    // Linting and formatting
+    "python.linting.enabled": true,
+    "python.linting.ignorePatterns": [
+        ".vscode/*.py",
+        "**/site-packages/**/*.py",
+        "lemmy/rules.py"
+    ],
     // whitelist numpy to remove lint errors
     "python.linting.pylintArgs": [
         "--extension-pkg-whitelist=numpy",
         "--ignored-classes=optparse.Values,thread._local,_thread._local,NpzFile"
     ],
-    "python.formatting.provider": "yapf",
+    "python.linting.mypyEnabled": false,
+
+    "python.linting.pep8Enabled": true,
+    "python.linting.pep8Path": "pycodestyle",
+    "python.linting.pydocstyleEnabled": true,
+
     "python.formatting.yapfArgs": [
         "--style",
         "{column_limit: 120}"
     ],
 
-    // Arguments passed in. Each argument is a separate item in the array.
-    "python.formatting.autopep8Args": ["--aggressive", "--aggressive"],
+    // Testing
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.pyTestArgs": [
+        "--exitfirst",
+        "--verbose"
+    ],
 
-    // Format the document upon saving.
-    "python.formatting.formatOnSave": false,
-    "python.unitTest.pyTestArgs": [],
-    "python.unitTest.pyTestEnabled": true
+    "cSpell.ignorePaths": [
+        "requirements.txt",
+        "**/.vscode",
+        ".env",
+        "settings.json"
+    ],
+    "cSpell.enabledLanguageIds": [
+        "c",
+        "cpp",
+        "csharp",
+        "go",
+        "handlebars",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "latex",
+        "php",
+        "plaintext",
+        "python",
+        "restructuredtext",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yml"
+    ]
 }
