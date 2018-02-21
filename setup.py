@@ -3,7 +3,7 @@ import re
 from setuptools import setup, find_packages
 
 VERSION = re.search(r'^VERSION\s*=\s*"(.*)"', open("rankmetrics/version.py").read(), re.M).group(1)
-with open("README.md", "rb") as f:
+with open("README.rst", "rb") as f:
     LONG_DESCRIPTION = f.read().decode("utf-8")
 
 setup(
