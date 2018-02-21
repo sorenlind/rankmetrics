@@ -1,0 +1,21 @@
+sudo: false
+language: python
+python:
+- '2.7'
+- '3.6'
+install:
+- pip install .
+- pip install pandas
+- pip install pytest
+- pip install readme_renderer
+script:
+- python setup.py check -r -s
+- python setup.py test
+notifications:
+  slack:
+    secure: X96eanO0vn3E2bDWYi2b0dS5hF3CLdOJo5NxaMo0SVJy7Be+TuC2IrtXBixr8b49QwxlSSq/F6IoiHFN/rLxr/2DwapQcAFqLzpC3eEKr+nMFo2NDG8O4wfpn1BaSVmYGxi12D7yJi4Mha9YD/hFhaRmIBpkbll++T5TVBKP8S4OyWRoVNWjFl1BI/x24uL16IOAZMgCVC3e3kj1itQO+iHHMbN6iB31PaMv3OkmLgmmsJpxNQpnlHxiBpdO3onP9F5tlErzAssK1dunpfyTcSuF4EFBgOhl5Vxg39RtqdnWla4TR6rIiWffiTYLLj3DtI+VX/WkU8r8rqXoqWouMJvuClD/hKNePkCd/skyysyrNSWMZdpIGRlbLz43nFqdnBBCa6m4m5ub0R8w4YqjkSMNnqpwB5K/nIqMm4RELxOcWVnKDI8xW+jVAyrwmffyYbzcoRJqUlFNcYrWMArkznObs5cLvzCdHdyZ4JIjLrNECsNaB9awy63jRWcG+weQsAh4yRznjX5B+hjSpQMnULpdVgbpe/u6eYBA2PQHsFn2CP0htU1Z3pVLZI2tcyVvGVzh+u1Z8/6swBVVDkRtHyIoLSawLgHRu/v2+po9JTqucRrPHmn9BGS5WqFSY2bp7sT+mtsr6h9vnrAOCKPnW1T8q9jzz35qsDLXnmJJzPs=
+  template:
+  - "%{repository}@%{branch}"
+  - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) by %{author}
+  - "%{commit_subject}"
+  - "%{result} in %{duration}."
